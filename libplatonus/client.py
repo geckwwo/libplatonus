@@ -87,6 +87,13 @@ class PlatonusClient:
         
         return client #, data, cookies
     
+    @classmethod
+    def from_authdata(cls, api_root: str, token: str, sid: str):
+        client = PlatonusClient(api_root, aiohttp.ClientSession())
+        client.auth_token = token
+        client.auth_sid = sid
+        return client
+    
     async def get_timetable(self, lang: Literal["en"] | Literal["ru"] | Literal["kz"] = "en"):
         # https://platonus.iitu.edu.kz/rest/schedule/userSchedule/student/initial/0/kz
         data, _ = await self.post_endpoint(f"/schedule/userSchedule/student/initial/0/{lang}", 

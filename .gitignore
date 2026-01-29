@@ -10,4 +10,5 @@ wheels/
 .venv
 
 .credentials
+.credentials.json
 .vscode
